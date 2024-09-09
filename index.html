@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <title>Мой Кликер</title>
+    <style>
+        /* Общие стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: bold;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1A1A1D;
+            color: #ffffff;
+        }
+
+        /* Верхняя панель */
+        .top-panel {
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            padding: 10px 20px;
+            background-color: transparent; 
+        }
+
+        /* Блок для бонуса */
+        .bonus-block {
+            display: flex;
+            align-items: center;
+            padding: 5px 10px; 
+        }
+
+        /* Блок для прибыли и настроек */
+        .settings-block { 
+            display: flex;
+            align-items: center;
+            background-color: #383838;
+            padding: 10px 15px; 
+            border-radius: 24px; 
+            font-size: 12px;
+        }
+
+        .settings-block img:first-child { 
+            width: 40px; 
+            height: auto; 
+            margin-right: 3px;
+        }
+
+        .settings-block span {
+            margin-right: 30px;
+        }
+
+        .top-panel img {
+            width: 24px;
+            height: auto; 
+        }
+
+        /* Основной контейнер */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px; 
+        }
+
+        /* Счетчик */
+        .counter {
+            display: flex; 
+            align-items: center; 
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+
+        .counter span {
+            font-size: 28px;
+        }
+
+        .counter img { 
+            width: 50px;
+            height: auto; 
+            margin-right: 10px;
+        }
+
+        /* Грядка */
+        .seedbed-container { 
+            position: relative; 
+            width: 60%;
+            max-width: 300px; 
+            margin-bottom: 30px;
+            margin-top: 50px; 
+        }
+
+        .seedbed {
+            width: 100%;
+            height: auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .glow { 
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50%; 
+            height: 50%;
+            border-radius: 50%; 
+            background-color: rgba(244, 220, 159, 0.55); 
+            filter: blur(75px);
+            z-index: 1;
+            animation: pulse 2s infinite; /* Анимация пульсации */
+        }
+
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        /* Нижняя панель */
+        .bottom-panel {
+            position: fixed; 
+            bottom: 0; 
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%; 
+            max-width: 400px; 
+            padding: 15px 10px 0px 15px;
+            background-color: #383838;
+            border-radius: 20px 20px 0 0; 
+            display: flex;
+            justify-content: space-around;  
+            align-items: center;
+        }
+
+        .bottom-panel-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .bottom-panel img {
+            width: 30px;
+            height: auto;
+        }
+
+        .bottom-panel-item span {
+            margin-top: 5px;
+            font-size: 12px;
+        }
+
+        /* Разделители */
+        .separator {
+            width: 2px;  
+            height: 60px;   
+            background-color: #4e4e50;
+            margin: 10px 0; 
+        }
+
+        /* Медиазапрос для улучшения адаптивности */
+        @media (max-width: 768px) {
+            .counter {
+                font-size: 1.5em;
+            }
+
+            .counter img {
+                width: 50px;
+            }
+
+            .seedbed-container {
+                width: 80%;
+            }
+
+            .bottom-panel {
+                width: 95%;
+                max-width: none;
+            }
+
+            .bottom-panel img {
+                width: 25px;
+            }
+
+            .bottom-panel-item span {
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="top-panel">
+        <div class="bonus-block"> 
+            <img src="present.png" alt="Иконка подарка">
+            <span>ЕЖЕДНЕВНЫЙ БОНУС</span>
+        </div>
+
+        <div class="settings-block">
+            <img src="sorrel.png" alt="Иконка листика"> 
+            <span>+20 В ЧАС</span>
+            <img src="settings.png" alt="Иконка настроек">
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="counter">
+            <img src="sorrel.png" alt="Иконка листика">
+            <span>25689348589</span>
+        </section>
+        <div class="seedbed-container">
+          <img src="seedbed.png" alt="Иконка грядки" class="seedbed">
+          <div class="glow"></div> 
+        </div>
+    </main>
+
+    <footer class="bottom-panel">
+        <div class="bottom-panel-item">
+            <img src="refs.png" alt="Иконка друзей">
+            <span>ДРУЗЬЯ</span>
+        </div>
+        <div class="separator"></div> 
+        <div class="bottom-panel-item">
+            <img src="shovel.png" alt="Иконка лопаты">
+            <span>ЛОПАТА</span>
+        </div>
+        <div class="separator"></div> 
+        <div class="bottom-panel-item">
+            <img src="coins.png" alt="Иконка монет">
+            <span>ЗАДАНИЯ</span>
+        </div>
+        <div class="separator"></div> 
+        <div class="bottom-panel-item">
+            <img src="game.png" alt="Иконка мини-игр">
+            <span>МИНИ-ИГРЫ</span>
+        </div>
+    </footer>
+</body>
+</html>
