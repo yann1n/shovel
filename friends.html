@@ -23,7 +23,6 @@
             align-items: center;
             justify-content: flex-start;
             min-height: 100vh;
-            
         }
 
         /* Верхний блок с заголовком и стрелкой */
@@ -37,8 +36,9 @@
         }
 
         .header img {
-            width: 30px;
-            height: 30px;
+            width: 26px; /* Уменьшено на 4px */
+            height: 26px; /* Уменьшено на 4px */
+            transform: scaleX(-1); /* Отражение по горизонтали */
         }
 
         .header h1 {
@@ -73,6 +73,7 @@
         .referral-info {
             display: flex;
             align-items: center;
+            justify-content: center; /* Смещение ближе к центру блока */
         }
 
         .referral-divider {
@@ -98,6 +99,11 @@
             .referral-block {
                 width: 90%;
                 padding: 10px;
+                border-radius: 16px; /* Меньше скругление углов */
+            }
+
+            .referral-info {
+                justify-content: center; /* Центрирование контента в мобильной версии */
             }
 
             .referral-block span {
