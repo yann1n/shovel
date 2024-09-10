@@ -36,9 +36,9 @@
         }
 
         .header img {
-            width: 26px; /* Уменьшено на 4px */
-            height: 26px; /* Уменьшено на 4px */
-            transform: scaleX(-1); /* Отражение по горизонтали */
+            width: 26px;
+            height: 26px;
+            transform: scaleX(-1);
         }
 
         .header h1 {
@@ -69,13 +69,13 @@
         }
 
         .referral-info:first-child {
-            justify-content: flex-end; /* Смещает первый элемент ближе к центру */
-            margin-right: 20px; /* Увеличен отступ справа от разделителя */
+            justify-content: flex-end;
+            margin-right: 20px;
         }
 
         .referral-info:last-child {
-            justify-content: flex-start; /* Смещает последний элемент ближе к центру */
-            margin-left: 20px; /* Увеличен отступ слева от разделителя */
+            justify-content: flex-start;
+            margin-left: 20px;
         }
 
         .referral-block img {
@@ -94,9 +94,31 @@
             background-color: #4e4e50;
         }
 
+        /* Стиль кнопки "Пригласить друга" */
+        .invite-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            margin-top: 20px;
+            border-radius: 24px;
+            background: linear-gradient(90deg, #567a3a, #89c147);
+            color: #ffffff;
+            font-size: 16px;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: none;
+        }
+
+        .invite-button img {
+            width: 20px;
+            height: auto;
+            margin-right: 10px;
+        }
+
         /* Нижний текст */
         .footer-text {
-            margin-top: 65px;
+            margin-top: 40px;
             font-size: 24px;
             text-align: center;
         }
@@ -110,21 +132,27 @@
             .referral-block {
                 width: 90%;
                 padding: 10px;
-                border-radius: 16px; /* Меньше скругление углов */
+                border-radius: 16px;
             }
 
             .referral-info:first-child {
-                justify-content: flex-end; /* Коррекция позиции для мобильных */
-                margin-right: 15px; /* Меньший отступ в мобильной версии */
+                justify-content: flex-end;
+                margin-right: 15px;
             }
 
             .referral-info:last-child {
-                justify-content: flex-start; /* Коррекция позиции для мобильных */
-                margin-left: 15px; /* Меньший отступ в мобильной версии */
+                justify-content: flex-start;
+                margin-left: 15px;
             }
 
             .referral-block span {
                 font-size: 14px;
+            }
+
+            .invite-button {
+                font-size: 14px;
+                padding: 10px 15px;
+                border-radius: 16px;
             }
 
             .footer-text {
@@ -153,6 +181,12 @@
             <span>20 друзей</span>
         </div>
     </div>
+
+    <!-- Кнопка пригласить друга -->
+    <button class="invite-button">
+        <img src="letter.png" alt="Письмо">
+        ПРИГЛАСИТЬ ДРУГА
+    </button>
 
     <!-- Текст "WELL WELL WELL..." -->
     <div class="footer-text">
