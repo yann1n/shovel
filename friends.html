@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <title>Рефералы</title>
+    <style>
+        /* Общие стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: bold;
+        }
+
+        body {
+            background-color: #1A1A1D;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            
+        }
+
+        /* Верхний блок с заголовком и стрелкой */
+        .header {
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #1A1A1D;
+        }
+
+        .header img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            flex-grow: 1;
+            text-align: center;
+            margin-right: 30px;
+        }
+
+        /* Блок информации о рефералах */
+        .referral-block {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #383838;
+            padding: 15px;
+            width: 80%;
+            border-radius: 24px;
+            margin-top: 20px;
+        }
+
+        .referral-block img {
+            width: 25px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        .referral-block span {
+            font-size: 16px;
+        }
+
+        .referral-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .referral-divider {
+            height: 25px;
+            width: 2px;
+            background-color: #4e4e50;
+            margin: 0 15px;
+        }
+
+        /* Нижний текст */
+        .footer-text {
+            margin-top: 40px;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        /* Медиа-запрос для адаптивности */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 22px;
+            }
+
+            .referral-block {
+                width: 90%;
+                padding: 10px;
+            }
+
+            .referral-block span {
+                font-size: 14px;
+            }
+
+            .footer-text {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Верхняя панель с заголовком и стрелкой -->
+    <header class="header">
+        <a href="index.html"><img src="arrow.png" alt="Назад"></a>
+        <h1>ДРУЗЬЯ</h1>
+    </header>
+
+    <!-- Блок информации о рефералах -->
+    <div class="referral-block">
+        <div class="referral-info">
+            <img src="sorrel.png" alt="Иконка щавеля">
+            <span>+50 В ЧАС</span>
+        </div>
+        <div class="referral-divider"></div>
+        <div class="referral-info">
+            <img src="refs.png" alt="Иконка друзей">
+            <span>20 друзей</span>
+        </div>
+    </div>
+
+    <!-- Текст "WELL WELL WELL..." -->
+    <div class="footer-text">
+        WELL WELL WELL...
+    </div>
+
+</body>
+</html>
