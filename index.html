@@ -48,6 +48,10 @@
                 text-align: left; /* Выравнивание по левому краю */
                 line-height: 1; /* Уменьшение межстрочного интервала */
             }
+
+            .bonus-block span span { /* Target the inner span elements */
+                display: block; /* Make each word a block element */
+            }
     
             /* Блок для прибыли и настроек */
             .settings-block { 
@@ -264,7 +268,10 @@
     <header class="top-panel">
         <div class="bonus-block"> 
             <img src="present.png" alt="Иконка подарка">
-            <span>ЕЖЕДНЕВНЫЙ БОНУС</span>
+            <span>
+                <span>ЕЖЕДНЕВНЫЙ</span>
+                <span>БОНУС</span>
+            </span>
         </div>
 
         <div class="settings-block">
