@@ -20,6 +20,7 @@
             background-color: #1A1A1D;
             color: #ffffff;
             user-select: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         /* Верхняя панель */
@@ -99,6 +100,10 @@
             margin-top: 20px; 
             cursor: pointer;
             user-select: none;
+            -khtml-user-select: none;
+            -o-user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
         }
 
         .seedbed {
@@ -113,7 +118,6 @@
             -o-user-select: none;
             -moz-user-select: none;
             -webkit-user-select: none;
-            pointer-events: none;
         }
 
         /* Анимация клика */
@@ -124,7 +128,6 @@
             -o-user-select: none;
             -moz-user-select: none;
             -webkit-user-select: none;
-            pointer-events: none;
         }
 
         .glow { 
@@ -268,9 +271,9 @@
             <span>25689348589</span>
         </section>
         <div class="seedbed-container" id="seedbedContainer">
-          <img draggable="false" src="seedbed.png" alt="Иконка грядки" class="seedbed" id="seedbed">
-          <div class="glow"></div> 
-        </div>
+            <img draggable="false" src="seedbed.png" alt="Иконка грядки" class="seedbed" id="seedbed">
+            <div class="glow"></div> 
+          </div>
     </main>
 
     <footer class="bottom-panel">
@@ -296,14 +299,32 @@
     </footer>
 
     <script>
+        const seedbedContainer = document.getElementById('seedbedContainer');
         const seedbed = document.getElementById('seedbed');
 
-        // Добавляем/удаляем класс при клике
-        seedbed.addEventListener('click', () => {
-            seedbed.classList.add('clicked');
-            setTimeout(() => {
-                seedbed.classList.remove('clicked');
-            }, 200); // Удаляем класс после завершения анимации
+        // Функция для проверки попадания клика в область изображения
+        function isClickInsideSeedbed(event) {
+            const rect = seedbed.getBoundingClientRect(); // Получаем размеры и положение изображения
+            const clickX = event.clientX;
+            const clickY = event.clientY;
+            
+            // Проверяем, находится ли клик в пределах изображения
+            return (
+                clickX >= rect.left &&
+                clickX <= rect.right &&
+                clickY >= rect.top &&
+                clickY <= rect.bottom
+            );
+        }
+
+        // Обработчик клика по контейнеру
+        seedbedContainer.addEventListener('click', (event) => {
+            if (isClickInsideSeedbed(event)) {
+                seedbed.classList.add('clicked');
+                setTimeout(() => {
+                    seedbed.classList.remove('clicked');
+                }, 200);
+            }
         });
     </script>
 </body>
