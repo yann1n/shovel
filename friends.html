@@ -60,6 +60,24 @@
             margin-top: 20px;
         }
 
+        /* Элементы с иконкой и текстом */
+        .referral-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+        }
+
+        .referral-info:first-child {
+            justify-content: flex-end; /* Смещает первый элемент ближе к центру */
+            margin-right: 20px; /* Увеличен отступ справа от разделителя */
+        }
+
+        .referral-info:last-child {
+            justify-content: flex-start; /* Смещает последний элемент ближе к центру */
+            margin-left: 20px; /* Увеличен отступ слева от разделителя */
+        }
+
         .referral-block img {
             width: 25px;
             height: auto;
@@ -70,22 +88,15 @@
             font-size: 16px;
         }
 
-        .referral-info {
-            display: flex;
-            align-items: center;
-            justify-content: center; /* Смещение ближе к центру блока */
-        }
-
         .referral-divider {
             height: 25px;
             width: 2px;
             background-color: #4e4e50;
-            margin: 0 15px;
         }
 
         /* Нижний текст */
         .footer-text {
-            margin-top: 40px;
+            margin-top: 65px;
             font-size: 24px;
             text-align: center;
         }
@@ -102,8 +113,14 @@
                 border-radius: 16px; /* Меньше скругление углов */
             }
 
-            .referral-info {
-                justify-content: center; /* Центрирование контента в мобильной версии */
+            .referral-info:first-child {
+                justify-content: flex-end; /* Коррекция позиции для мобильных */
+                margin-right: 15px; /* Меньший отступ в мобильной версии */
+            }
+
+            .referral-info:last-child {
+                justify-content: flex-start; /* Коррекция позиции для мобильных */
+                margin-left: 15px; /* Меньший отступ в мобильной версии */
             }
 
             .referral-block span {
