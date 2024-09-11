@@ -2,9 +2,9 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, user-scalable=no">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <title>Мой Кликер</title>
     <style>
         /* Общие стили */
@@ -129,18 +129,12 @@
             height: auto; 
         }
 
-        #welcomeMessage {
-            margin-top: 20px;
-            font-size: 1.5em;
-            color: #ffffff;
-        }
-
-        /* Основной контент */
+        /* Основной контейнер */
         .container {
-            display: none;
+            display: none; /* Скрыть основной контент до загрузки */
             flex-direction: column;
             align-items: center;
-            padding: 20px;
+            padding: 20px; 
         }
 
         /* Счетчик */
@@ -328,10 +322,8 @@
             <img src="sorrel.png" alt="Иконка щавеля">
             <div class="spinner"></div>
         </div>
-        <div id="welcomeMessage">Привет, пользователь!</div>
     </div>
 
-    <!-- Основной контент -->
     <header class="top-panel">
         <div class="bonus-block"> 
             <img src="present.png" alt="Иконка подарка">
@@ -384,6 +376,43 @@
     </footer>
 
     <script>
+        // Функция для получения данных пользователя из Telegram
+        function getTelegramUserData() {
+            // Проверяем, доступен ли объект Telegram Web App
+            if (window.Telegram.WebApp) {
+                const tg = window.Telegram.WebApp;
+                
+                // Получаем данные пользователя
+                const userId = tg.initDataUnsafe.user.id;
+                const userName = tg.initDataUnsafe.user.first_name;
+
+                // Отправляем данные пользователя на сервер
+                fetch('http://185.105.88.12:5000/save_user', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        id: userId,
+                        username: userName
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Данные пользователя сохранены:', data);
+                })
+                .catch(error => {
+                    console.error('Ошибка при сохранении данных пользователя:', error);
+                });
+            } else {
+                console.error('Telegram Web App API недоступен');
+            }
+        }
+
+        // Вызываем функцию получения данных пользователя после загрузки страницы
+        window.addEventListener('load', getTelegramUserData);
+
+
         const seedbedContainer = document.getElementById('seedbedContainer');
         const seedbed = document.getElementById('seedbed');
         const loadingScreen = document.getElementById('loadingScreen');
@@ -396,12 +425,12 @@
                 setTimeout(() => {
                     container.style.display = 'flex';
                 }, 300); // Задержка для плавного перехода
-            }, 3300); // 3300 миллисекунд = 3.3 секунд
+            }, 3300); // 5000 миллисекунд = 5 секунд (можно изменить на 7000 для 7 секунд)
         });
 
         // Функция для проверки попадания клика в область изображения
         function isClickInsideSeedbed(event) {
-            const rect = seedbed.getBoundingClientRect();
+            const rect = seedbed.getBoundingClientRect(); // Получаем размеры и положение изображения
             const clickX = event.clientX;
             const clickY = event.clientY;
             
@@ -423,39 +452,6 @@
                 }, 200);
             }
         });
-    </script>
-    <script>
-        // Инициализация Telegram WebApp
-        const tg = window.Telegram.WebApp;
-        tg.expand();  // Расширяем приложение на весь экран
-
-        // Получаем информацию о пользователе
-        const user = tg.initDataUnsafe.user;
-
-        // Приветствие с ником пользователя
-        const welcomeMessageElem = document.getElementById('welcomeMessage');
-        if (user) {
-            welcomeMessageElem.textContent = `Привет, ${user.username || user.first_name}!`;
-        }
-
-        // Отправляем данные пользователя на сервер при загрузке
-        if (user) {
-            const userData = {
-                id: user.id,
-                username: user.username || user.first_name
-            };
-
-            fetch('http://127.0.0.1:5000/save_user', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(userData)
-            })
-            .then(response => response.json())
-            .then(data => console.log('Данные успешно сохранены:', data))
-            .catch(error => console.error('Ошибка:', error));
-        }
     </script>
 </body>
 </html>
